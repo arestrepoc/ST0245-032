@@ -1,0 +1,63 @@
+public class Ejersicios21 {
+     
+    public static void main(String args[]){
+        int[] array = {1,2,3,30,6};
+        System.out.println(factorial(2));
+        System.out.println(triangle(5));
+        System.out.println(sumDigits(12345));
+        System.out.println(array220(array,0));
+        System.out.println(array6(array,0));
+    }
+     
+    /**
+     *
+     * @param n
+     * @return factorial de n
+     */
+    public static int factorial(int n) {
+        if(n==1) return 1;
+        return factorial(n-1)*n;
+    }
+     
+    /**
+     *
+     * @param rows
+     * @return numero de bloques en el triangulo
+     */
+    public static int triangle(int rows) {
+        if(rows == 0) return 0;
+        return rows+triangle(rows-1);
+    }
+ 
+    /**
+     *
+     * @param n
+     * @return la suma de todos los digitos de n
+     */
+    public static int sumDigits(int n) {
+        if(n/10<1) return n;
+        return n%10+sumDigits(n/10);
+    }
+ 
+    /**
+     *
+     * @param nums
+     * @param index
+     * @return 
+     */
+    public static boolean array220(int[] nums, int index) {
+        if(index>=nums.length-1) return false;
+        return nums[index]*10==nums[index+1]||array220(nums,index+1);
+    }
+    /**
+     *
+     * @param nums
+     * @param index
+     * @return hay un 6 en el arreglo nums
+     */
+    public static boolean array6(int[] nums, int index) {
+    if(index>nums.length-1) return false;
+    return nums[index]==6||array6(nums,index+1);
+}
+ 
+}
