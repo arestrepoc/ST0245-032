@@ -1,82 +1,53 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
- 
+import java.io.FileNotFoundException;
 import java.util.Random;
 import java.util.ArrayList;
-import java.io.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  *
  * @author Mariaelvira
  */
-public class Main {
-    public static void main(String[] args) throws FileNotFoundException{
-        Scanner Bee1M = new Scanner(new File("1M.txt"));
-        ArrayList<Bee> c = new ArrayList<>();
-        while(Bee1M.hasNextLine()){
-            String line = Bee1M.nextLine();
-            Scanner scanner = new Scanner(line);
-            scanner.useDelimiter(",");
-            while(scanner.hasNextDouble()){
-            c.add(new Bee((int)(scanner.nextDouble()*111111), (int)((scanner.nextDouble()-6)*111111)));
-            }
-            scanner.close();
-        }
-        Bee1M.close();
+public class Main{
+    public static void main(String[] args)throws FileNotFoundException{
+        int memCounter=0;
+        int timeCounter=0;
         
-        
-        //"----------------------"
-        
-        /*ArrayList<Bee> bee1 = c;
-        Quadtree quad1 = new Quadtree(160000);
+        ArrayList<Bee> bee1 = TextReader.Bee1M();
+        Quadtree quad1 = new Quadtree(9000);
         quad1.add(bee1);
+        
+        for(int i=0; i<=9; i++){
+        System.out.println("Trial "+i);
+        long beforeMem = Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
         long startTime = System.currentTimeMillis();
         ArrayList<Colision> s1 = quad1.colision();;
+        long afterMem = Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
         long estimatedTime = System.currentTimeMillis()-startTime;
+        timeCounter += estimatedTime;
+        System.out.println("The time this trial toook was: " + estimatedTime);
         System.out.println("Quad "+estimatedTime);
+        System.out.println("Memory used in trial is: "+ (afterMem-beforeMem));
+        memCounter += (afterMem-beforeMem);
         
+        beforeMem = Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
         startTime = System.currentTimeMillis();
         ArrayList<Colision> s2 = Quadtree.staticColision(bee1);
+        afterMem = Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
         estimatedTime = System.currentTimeMillis()-startTime;
+        System.out.println("The time this trial toook was: " + estimatedTime);
         System.out.println("Static "+estimatedTime);
+        timeCounter += estimatedTime;
+        System.out.println("Memory used in trial is: "+ (afterMem-beforeMem));
+        memCounter += (afterMem-beforeMem);
         
-        System.out.println(s1.size());
-        System.out.println(s2.size());*/
-         /*
-        while(s1.size()==s2.size()){
-            bee1 = randomBees(5000,80000);
-            quad1 = new Quadtree(80000);
-            quad1.add(bee1);
-            s1 = quad1.colision();
-            s2 = Quadtree.staticColision(bee1);
-        }
-        System.out.println(s1);
-        System.out.println(s2);
-        System.out.println("");
-        System.out.println(quad1.print(quad1.root));
         System.out.println(s1.size());
         System.out.println(s2.size());
-        
-        long startTime = System.currentTimeMillis();
-        System.out.println(quad1.colision().size());
-        long estimatedTime = System.currentTimeMillis()-startTime;
-        System.out.println(estimatedTime);
-        
-        startTime = System.currentTimeMillis();
-        System.out.println(Quadtree.staticColision(bee1).size());
-        estimatedTime = System.currentTimeMillis()-startTime;
-        System.out.println(estimatedTime);
-        */
-
-        
-        
+        beforeMem=0;
+        startTime=0;
+        afterMem=0;
+        estimatedTime=0;
+        }
+        System.out.println("The average time taken during these trials was: "+(timeCounter/10));
+        System.out.println("The average memory used during these trials was: "+(memCounter/10));
     }
     public static ArrayList<Bee> randomBees(int n, int w){
         ArrayList<Bee> b = new ArrayList<>();
@@ -86,32 +57,4 @@ public class Main {
         }
         return b;
     }
-    /*public static ArrayList<Bee> randomBees2(){
-        BufferedReader br=null;
-        String currentline=null;
-        try{
-        br = new BufferedReader(new FileReader("1000000abejas.txt"));
-        currentline=br.readLine();
-        } catch (FileNotFoundException e){System.out.println("Error!");}
-        int index=0;
-        while(currentline != null){
-            String[] temp=currentline.split(",");
-        }
-    }*/
-    /*public static ArrayList<Bee> Bee1M() throws FileNotFoundException{
-        Scanner Bee1M = new Scanner(new File("1M.txt"));
-        ArrayList<Bee> c = new ArrayList<>();
-        while(Bee1M.hasNextLine()){
-            String line = Bee1M.nextLine();
-            Scanner scanner = new Scanner(line);
-            scanner.useDelimiter(",");
-            while(scanner.hasNextInt()){
-                c.add(new Bee(scanner.nextInt(), scanner.nextInt()));
-            }
-            scanner.close();
-        }
-        Bee1M.close();
-        System.out.println(c);
-        return c;
-    }*/
 }

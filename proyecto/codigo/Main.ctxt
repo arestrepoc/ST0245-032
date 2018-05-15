@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=Main
+comment0.text=\r\n\r\n\ @author\ Mariaelvira\r\n
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=n\ w
+comment2.target=java.util.ArrayList\ randomBees(int,\ int)
+numComments=3

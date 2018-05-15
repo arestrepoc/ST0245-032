@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=TextReader
+comment0.text=\r\n\r\n\ @author\ Mariaelvira\r\n
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=
+comment2.target=java.util.ArrayList\ Bee1M()
+comment3.params=
+comment3.target=void\ xyminreader()
+numComments=4
